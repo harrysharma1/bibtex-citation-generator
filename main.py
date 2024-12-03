@@ -1,6 +1,6 @@
 import argparse
 import uuid
-
+from bs4 import BeautifulSoup
 
 parser = argparse.ArgumentParser(prog="Bibtext Generator", description="Generate Bibtex from URLs")
 parser.add_argument("url")
