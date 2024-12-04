@@ -17,8 +17,8 @@ args = parser.parse_args()
 
 match args.type:
     case "online":
-        OnlineBibtex().get_bibtex(args.url, args.key, args.author, args.last_accessed, args.release)
+        OnlineBibtex().get_bibtex(args.url, args.type, args.key, args.author, args.last_accessed, args.release)
     case "misc":
-        MiscBibtext().get_bibtex(args.url, args.type, args.type, args.author, args.last_accessed, args.release)
+        MiscBibtext().get_bibtex(args.url, args.type, args.key, args.author, args.last_accessed, args.release)
     case _:
         "Error: No type provided"

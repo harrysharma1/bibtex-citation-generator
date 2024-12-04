@@ -21,12 +21,12 @@ class OnlineBibtex(Bibtex):
         super().__init__()
      
     
-    def get_bibtex(self, url, key, author, last_accessed, release):
+    def get_bibtex(self, url, type, key, author, last_accessed, release):
         if "https://arxiv.org" in url:
             self.arxiv_search.arxiv_to_bibtex(url)
         else:
             print("Starting generation...")
-            text = "@{}".args.type
+            text = "@{}".format(type)
             text += "{"
             text += " {},\n".format(key)
             text += "   author = {"
