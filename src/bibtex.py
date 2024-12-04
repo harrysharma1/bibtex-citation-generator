@@ -23,12 +23,12 @@ class OnlineBibtex(Bibtex):
     
     def get_bibtex(self, url, type, key, author, last_accessed, release):
         if "https://arxiv.org" in url:
-            self.arxiv_search.arxiv_to_bibtex(url)
+            self.arxiv_search.arxiv_to_bibtex(url, key)
         else:
             print("Starting generation...")
             text = "@{}".format(type)
             text += "{"
-            text += " {},\n".format(key)
+            text += "{},\n".format(key)
             text += "   author = {"
             author_name = ", ".join(author.split(' ')[::-1])
             text += "{}".format(author_name)
@@ -57,7 +57,7 @@ class MiscBibtext(Bibtex):
         print("Starting generation...")
         text = "@{}".format(type)
         text += "{"
-        text += " {},\n".format(key)
+        text += "{},\n".format(key)
         text += "   author = {"
         author_name = ", ".join(author.split(' ')[::-1])
         text += "{}".format(author_name)
