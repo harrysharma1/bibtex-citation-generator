@@ -21,7 +21,7 @@ class OnlineBibtex(Bibtex):
         super().__init__()
      
     
-    def get_bibtex(self, url, type, key, author, last_accessed, release):
+    def get_bibtex(self, url, type, key, author, last_accessed, release_year):
         if "https://arxiv.org" in url:
             self.arxiv_search.arxiv_to_bibtex(url, type, key)
         else:
@@ -43,7 +43,7 @@ class OnlineBibtex(Bibtex):
             text += "{}".format(last_accessed)
             text += "},\n"
             text += "   year = {"
-            text += "{}".format(release)
+            text += "{}".format(release_year)
             text += "}\n}"
             subprocess.run("pbcopy", text=True, input=text)
             print("Finished generating:\n{}".format(text))
@@ -53,7 +53,7 @@ class MiscBibtext(Bibtex):
     def __init__(self):
         super().__init__()
         
-    def get_bibtex(self, url, type, key, author, last_accessed, release):
+    def get_bibtex(self, url, type, key, author, last_accessed, release_year):
         if "https://arxiv.org" in url:
             self.arxiv_search.arxiv_to_bibtex(url, type, key)
         else:      
@@ -75,7 +75,7 @@ class MiscBibtext(Bibtex):
             text += "{}".format(last_accessed)
             text += "},\n"
             text += "   year = {"
-            text += "{}".format(release)
+            text += "{}".format(release_year)
             text += "}\n}"
             subprocess.run("pbcopy", text=True, input=text)
             print("Finished generating:\n{}".format(text))
