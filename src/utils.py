@@ -19,3 +19,17 @@ class BibtexUtility():
     
     def get_current_month(self):
         return self.today.strftime("%m")
+
+    def extract_tags_with_author(self, url):
+        response = requests.get(url)
+        if response.status_code == 200:
+            bs = BeautifulSoup(response.content, 'html.parser')
+            
+            def contains_string(tag):
+                return "author" in tag.get_text()
+            
+            tags_with_string = bs.find_all(contains_string)
+            return tags_with_string
+        else:
+            print(f"Failed to retrieve the page. Status code: {response.status_code}")
+            return []

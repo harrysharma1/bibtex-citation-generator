@@ -80,3 +80,23 @@ class MiscBibtext(Bibtex):
             subprocess.run("pbcopy", text=True, input=text)
             print("Finished generating:\n{}".format(text))
             print("Copied to clipboard")
+
+class InproceedingsBibtex(Bibtex):
+    def __init__(self):
+        super().__init__()
+        
+    def get_bibtex(self, url, type, key, title, author):
+        text = ""
+        text += "@{}".format(type)
+        text += "{"
+        text += "{},\n".format(key)
+        text += "   title = {"
+        if title is None:
+            text += "{}".format(self.utility_function.extract_title(url))
+        else:
+            text += "{}".format(title)
+        text += "},\n"
+        text += "   author = {"
+        text += "{}".format(self.utility_function.extract_tags_with_author(url))
+        text += "},\n" 
+        print(text)

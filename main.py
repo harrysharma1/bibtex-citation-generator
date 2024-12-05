@@ -1,5 +1,5 @@
 import argparse
-from src.bibtex import OnlineBibtex, MiscBibtext
+from src.bibtex import OnlineBibtex, MiscBibtext, InproceedingsBibtex
 from src.utils import BibtexUtility
 import uuid
 
@@ -39,7 +39,7 @@ inproceedings_parser.add_argument("--volume", help="Volume of the conference pap
 inproceedings_parser.add_argument("--number", help="Issue within the volume of the conference papers.")
 inproceedings_parser.add_argument("--pages", help="Pages within the issue of the conference papers.")
 inproceedings_parser.add_argument("--editor", help="Editors of the conference.")
-
+inproceedings_parser.add_argument("--organization", help="Organization that published this conference paper.")
 
 args = parser.parse_args()
 
@@ -47,6 +47,8 @@ match args.command:
     case "online":
         OnlineBibtex().get_bibtex(args.url, args.command, args.key, args.author, args.last_accessed, args.release_year)
     case "misc":
-        MiscBibtext().get_bibtex(args.url, args.command, args.key, args.author, args.last_accessed, args.release_release_year)
+        MiscBibtext().get_bibtex(args.url, args.command, args.key, args.author, args.last_accessed, args.release_year)
+    case "inproceedings":
+        InproceedingsBibtex().get_bibtex(args.url, args.command, args.key, args.book_title, args.author)
     case _:
         "Error: No type provided"
