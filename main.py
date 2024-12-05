@@ -26,13 +26,20 @@ misc_parser.add_argument("-l", "--last-accessed", default=utility.get_current_da
 
 # @inproceedings
 inproceedings_parser = subparsers.add_parser("inproceedings", help="Generate bibtex for inproceeding documents.")
-inproceedings_parser.add_argument("url", help="URL for conference paper you would like to cite")
+inproceedings_parser.add_argument("url", help="URL for the conference paper you would like to cite")
 inproceedings_parser.add_argument("-k", "--key", default=str(uuid.uuid4()), help="Citation key for bibtex. If not provided, it will default to a UUID string.")
 inproceedings_parser.add_argument("-a", "--author", default="<Alter Please>", help="Author name(s). If not provided, will default to <Alter Please>")
 inproceedings_parser.add_argument("-y", "--release-year", default=utility.get_current_year(), help="Release year of the conference paper. If not provided, will default to current year.")
 inproceedings_parser.add_argument("-m", "--release-month", default=utility.get_current_month(), help="Release month of the conference paper. Id not provided, will default to current month.")
-inproceedings_parser.add_argument("-t","--book-title", help="Name of conference paper cited.")
-inproceedings_parser.add_argument("--publisher", help="Publisher of the conference paper you would like to cite")
+inproceedings_parser.add_argument("-t","--book-title", help="Name of the conference paper cited.")
+inproceedings_parser.add_argument("--publisher", help="Publisher of the conference paper.")
+inproceedings_parser.add_argument("--address", help="Adress of the conference paper publisher.")
+inproceedings_parser.add_argument("--series", help="Conference proceedings")
+inproceedings_parser.add_argument("--volume", help="Volume of the conference papers.")
+inproceedings_parser.add_argument("--number", help="Issue within the volume of the conference papers.")
+inproceedings_parser.add_argument("--pages", help="Pages within the issue of the conference papers.")
+inproceedings_parser.add_argument("--editor", help="Editors of the conference.")
+
 
 args = parser.parse_args()
 
