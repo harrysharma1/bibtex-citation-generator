@@ -24,6 +24,8 @@ class OnlineBibtex(Bibtex):
     def get_bibtex(self, url, type, key, author, last_accessed, release_year):
         if "https://arxiv.org" in url:
             self.arxiv_search.arxiv_to_bibtex(url, type, key)
+        elif "https://ieeexplore.ieee.org" in url:
+            pass
         else:
             print("Starting generation...")
             text = "@{}".format(type)

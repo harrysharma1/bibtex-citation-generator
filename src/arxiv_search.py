@@ -1,4 +1,5 @@
 from ssl import SSLEOFError, SSLError
+from selenium import webdriver
 import subprocess
 import arxiv
 
@@ -63,5 +64,10 @@ class ArxivSearch():
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
       
-            
+class IEEESearch():
+    def __init__(self):
+        browser_options = webdriver.ChromeOptions()
+        browser_options.add_argument("headless")
+        self.driver = webdriver.Chrome(options=browser_options)
+      
         
