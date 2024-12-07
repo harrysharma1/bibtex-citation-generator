@@ -10,6 +10,15 @@ class BibtexUtility():
         body = html.content
         bs = BeautifulSoup(body, 'html.parser')
         return bs.title.string
+    
+    def author_lists(self, authors):
+        authors_list = authors.split(',')
+        formatted_text = ""
+        for i in range(len(authors_list)):
+            formatted_text += "{}".format(authors_list[i])
+            if i < len(authors_list)-1:
+                formatted_text += " and "
+        return formatted_text
 
     def get_current_date(self):
         return self.today.strftime("%d/%m/%Y")

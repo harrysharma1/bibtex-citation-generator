@@ -32,8 +32,7 @@ class OnlineBibtex(Bibtex):
             text += "{"
             text += "{},\n".format(key)
             text += "   author = {"
-            author_name = ", ".join(author.split(' ')[::-1])
-            text += "{}".format(author_name)
+            text += "{}".format(self.utility_function.author_lists(author))
             text += "},\n"
             text += "   title = {"
             text += "{}".format(self.utility_function.extract_title(url))
