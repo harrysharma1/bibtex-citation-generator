@@ -25,6 +25,7 @@ class OnlineBibtex(Bibtex):
         if "https://arxiv.org" in url:
             self.arxiv_search.arxiv_to_bibtex(url, type, key)
         elif "https://ieeexplore.ieee.org" in url:
+            # TODO: Implement scraping ability
             pass
         else:
             print("Starting generation...")

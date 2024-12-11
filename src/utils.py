@@ -1,16 +1,29 @@
 from bs4 import BeautifulSoup
 import requests
+from requests.exceptions import HTTPError
 from datetime import date
 class BibtexUtility():
     def __init__(self):
         self.today = date.today()
     
     def extract_title(self, url):
-        html = requests.get(url)
-        body = html.content
-        bs = BeautifulSoup(body, 'html.parser')
-        return bs.title.string
-    
+        try:
+            html = requests.get(url)
+            html.raise_for_status()
+            body = html.content
+            bs = BeautifulSoup(body, 'html.parser')
+            return bs.title.string
+        except HTTPError as er:
+            match (er.response.status_code):
+                case 403:
+                    print("{}: Unable to access the page".format(er.response.status_code))
+                    return "<Unable to find title>"   
+                case 404:
+                    print("{}: Unable to find the page of copied URL")
+                    return "<Unable to find title>"      
+        except Exception as e:
+            print("Unkown error has occurred:{}".format(e))
+            return "<Unable to find title>"
     def author_lists(self, authors):
         authors_list = authors.split(',')
         formatted_text = ""
